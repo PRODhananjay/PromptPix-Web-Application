@@ -82,10 +82,18 @@ const userCredits = async (req, res) => {
 }
 
 // razorpay gateway initialize
-const razorpayInstance = new razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+// const razorpayInstance = new razorpay({
+//     key_id: process.env.RAZORPAY_KEY_ID,
+//     key_secret: process.env.RAZORPAY_KEY_SECRET,
+// });
+
+const razorpay =
+  process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET
+    ? new Razorpay({
+        key_id: process.env.RAZORPAY_KEY_ID,
+        key_secret: process.env.RAZORPAY_KEY_SECRET,
+      })
+    : null;
 
 
 // Payment API to add credits
